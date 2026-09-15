@@ -5,6 +5,8 @@
 !src/**
 !scripts/
 !scripts/build.js
+!tools/
+!tools/**
 !.github/
 !.github/**
 !README_fa.md

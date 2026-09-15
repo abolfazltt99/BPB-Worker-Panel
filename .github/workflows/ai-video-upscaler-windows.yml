@@ -1,0 +1,27 @@
+name: Build Windows AI Video Upscaler
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "tools/ai-video-upscaler/**"
+      - ".github/workflows/ai-video-upscaler-windows.yml"
+
+jobs:
+  build-exe:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Build portable EXE with bundled AI runtime
+        shell: pwsh
+        working-directory: tools/ai-video-upscaler
+        run: ./build_exe.ps1 -DownloadRuntime
+      - name: Upload Windows EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: AI-Video-Upscaler-windows
+          path: tools/ai-video-upscaler/dist/AI-Video-Upscaler.exe
+          if-no-files-found: error

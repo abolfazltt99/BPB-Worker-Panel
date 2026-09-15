@@ -1,0 +1,7 @@
+# Downloaded Windows runtimes and Real-ESRGAN model weights are large third-party files.
+bin/
+build/
+dist/
+*.mkv
+*.mp4
+.\*_ai_work/
